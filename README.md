@@ -1,3 +1,8 @@
+# Structure
+In `main/main.py` find the code of the encryption
+In `api-test/main.py` find the ekm-module to provide the KEK2
+
+
 # Run Demo
 1. Start `main/main_html.py` in a terminal tab
 - `python main_html.py`
