@@ -4,7 +4,7 @@ In `main/main.py` find the code of the encryption
 In `api-test/main.py` find the ekm-module to provide the KEK2
 
 
-# Run Demo
+# Run Demo (locally on GCP)
 1. Start `main/main_html.py` in a terminal tab
 - `python main_html.py`
 2. Open second terminal tab and start `ekm/ekm.py`
