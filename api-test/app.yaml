@@ -1,0 +1,5 @@
+runtime: python39
+
+service: api
+
+entrypoint: gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app

@@ -1,0 +1,14 @@
+#ignore folder(s)
+archiv/
+
+api-test/venv/
+api-test/.gcloudignore
+
+main/templates/hexoct.html
+main/templates/index copy.html
+main/templates/index_copy_2.html
+main/templates/index.html
+main/templates/index.js
+main/templates/test.html
+main/.gcloudignore
+main/test_server.py

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        function handleRadioClick() {
+            if (document.getElementById('google').checked) {
+                document.getElementById('ekm').style.display = 'none';
+                document.getElementById('gcp').style.display = 'block';
+            } else {
+                document.getElementById('ekm').style.display = 'block';
+                document.getElementById('gcp').style.display = 'none';
+            }
+        }
+    </script>
+    
+    <style>
+        body, html {
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-left: 40px;
+        }
+
+        label {
+            position: relative;
+            display: block;
+        }
+        input {
+            position: absolute;
+        }
+        span {
+            display: block;
+            margin-left: 30px;
+        }
+
+        .container {
+          position: relative;
+          font-family: Arial;
+        }
+        
+        .text-block {
+          position: absolute;
+          top: 48%;
+          left: 0px;
+          background-color: transparent;
+          color: blue;
+          padding-left: 40px;
+          padding-right: 20px;
+        }
+
+        .text-block2 {
+          position: absolute;
+          top: 12%;
+          left: 30%;
+          background-color: transparent;
+          color: blue;
+          padding-left: 40px;
+          padding-right: 20px;
+        }
+
+        .myIframe {
+          position: relative;
+        }
+
+        /* Set a style for the submit button */
+        .btn {
+            background-color: rgb(0, 90, 255);
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            opacity: 0.9;
+        }
+
+        table {
+            width: 100%;
+            border: none;
+            position: absolute;
+            top: 12%;
+            background-color: transparent;
+        }
+        td, th {
+            padding: 30px;
+            border: none;
+            color: blue;
+        }
+
+        
+
+</style>
+
+
+    <title>Document</title>
+</head>
+<body>
+    <h2>Encryption at Rest</h2>
+
+
+    <form action="/get" method="POST">
+        <label for="input"><p>Input:</label>
+        <input type="text" id="input" name="input" size=50px value="adam loves eve"></p>
+
+    
+
+    <p>Data encryption:</p>
+    
+        <label for="google">
+            <input type="radio" id="google" name="ekm" value="Google" CHECKED onclick="handleRadioClick()" onchange="document.getElementById('sh2').style.display='none'"/>
+                <span>Google-managed encryption key<br>
+                    <small>No configuration required</small>
+                </span>
+        </label><br>
+        <label for="cust">
+            <input type="radio" id="cust" name="ekm" value="Cust" onclick="handleRadioClick()" onchange="document.getElementById('sh2').style.display='block'"/>
+                <span>Customer-managed encryption key (CMEK)<br>
+                    <small>Manage via Customer Key Management Service</small>
+                    <label for="URL"><p>EKM URL: </label>
+                        <input type="text" id="URL" name="URL" size=50px value=""></p>
+                </span>
+        </label><br>
+
+        <iframe src="{{ url_for('envelope1') }}" id="gcp" style="border:none;display:none;" width="350px" height="750px" title="envelope1"></iframe>
+        <iframe src="{{ url_for('envelope') }}" id="ekm" style="border:none;display:none" width="350px" height="750px" title="envelope"></iframe>
+    
+        
+        <br>
+        <button type="submit" class="btn"><b>SAVE</b></button>
+        <br>
+
+</form>
+
+
+    <div class="container">
+      <img src="/static/data-upload-chunks.svg" alt="Nature" style="width:100%;">
+      
+      <table>
+        <tr>
+            <td style="width:20%"></td>
+            <td style="width:25%"></td>
+            <td style="width:15%"></td>
+            <td style="width:20%"></td>
+            <td style="width:20%"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <th>{{ chunks[0] }}</th>
+            <th><b></b></th>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <th>{{ deks[0] }}</th>
+            <th style="text-align: right">{{ cipher[0] }}</th>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b></b></td>
+            <th>{{ chunks[1] }}</th>
+            <th style="text-align: right">{{ enc_deks[0]}}</th>
+            <td></td>
+            <th style="text-align: right">{{ cipher[1] }}</th>
+        </tr>
+        <tr>
+            <th>{{ input  }}</th>
+            <th>{{ deks[1] }}</th>
+            <td></td>
+            <td></td>
+            <th style="text-align: right">{{ enc_deks[1]}}</th>
+        </tr>
+        <tr>
+            <td></td>
+            <th><br><br>{{ chunks[2] }}</th>
+            <td></td>
+            <th style="text-align: right"><br><br>{{ cipher[2] }}</th>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <th>{{ deks[2] }}</th>
+            <td></td>
+            <th style="text-align: right">{{ enc_deks[2]}}</th>
+            <td></td>
+        </tr>
+      </table>
+    </div>
+
+</body>
+</html>
